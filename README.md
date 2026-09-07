@@ -29,21 +29,25 @@ J-Force-Shattered-Realms/
 ├── JForceShatteredRealms_GameSpec.md       ← Full game design spec (for AI/devs)
 ├── src/
 │   ├── ReplicatedStorage/
+│   │   ├── Combat/                         ← Hitboxes & status effects (Phase 2)
 │   │   ├── Remotes/
 │   │   │   └── RemoteDefinitions.lua       ← All 21 network remotes
-│   │   └── Shared/
-│   │       ├── Config.lua                  ← All balance constants
-│   │       ├── Enums.lua                   ← Game enumerations (frozen)
-│   │       ├── Types.lua                   ← Data models & factories
-│   │       └── Utils.lua                   ← Shared utility functions
+│   │   ├── Shared/
+│   │   │   ├── Config.lua                  ← All balance constants
+│   │   │   ├── Enums.lua                   ← Game enumerations (frozen)
+│   │   │   ├── Types.lua                   ← Data models & factories
+│   │   │   └── Utils.lua                   ← Shared utility functions
+│   │   └── Skills/                         ← Base skill class & skill definitions (Phase 2+)
 │   ├── ServerScriptService/
 │   │   ├── Main.server.lua                 ← Server entry point
 │   │   └── Managers/
-│   │       └── PlayerDataManager.lua       ← DataStore CRUD & migrations
-│   ├── StarterGui/                         ← UI screens (coming soon)
-│   ├── StarterPlayer/                      ← Client scripts (coming soon)
-│   └── Workspace/                          ← Arena maps (coming soon)
-└── assets/                                 ← Models, animations, sounds, VFX (coming soon)
+│   │       ├── PlayerDataManager.lua       ← DataStore CRUD & migrations
+│   │       └── CombatManager.lua           ← Damage calculation & hit validation (Phase 2)
+│   ├── StarterGui/                         ← UI screens (Phase 6)
+│   ├── StarterPlayer/
+│   │   └── StarterCharacterScripts/        ← Combat & animation controllers (Phase 2)
+│   └── Workspace/                          ← Arena maps (Phase 4)
+└── assets/                                 ← Models, animations, sounds, VFX (Phase 7)
 ```
 
 ---
@@ -202,13 +206,30 @@ This document is designed to be handed to an **AI coding agent** or a **developm
 
 | Phase | Status | Description |
 |---|---|---|
-| **Phase 1: Foundation** | ✅ Complete | Config, types, data persistence, networking |
-| **Phase 2: Combat Core** | 🔜 Next | Hitboxes, damage, status effects, starter skills |
+| **Phase 1: Foundation** | ✅ Complete | Config, types, data persistence, networking, Rojo sync |
+| **Phase 2: Combat Core** | 🚀 In Progress | Hitboxes, damage calculation, status effects, starter skills |
 | **Phase 3: Skills & Trees** | ⬜ Planned | All 54 skills, skill trees, loadout system |
 | **Phase 4: Match System** | ⬜ Planned | Matchmaking, arenas, round lifecycle |
 | **Phase 5: Economy** | ⬜ Planned | Gold/XP rewards, ELO ranking, shop |
 | **Phase 6: UI** | ⬜ Planned | All game screens and HUD |
 | **Phase 7: Polish** | ⬜ Planned | VFX, SFX, balance, anti-cheat, launch |
+
+---
+
+### 🎯 Current Focus — Phase 2: Combat Core
+
+Now that Phase 1 foundation and workspace live-sync are verified, development has begun on Phase 2:
+
+| Component | File / Path | Purpose | Status |
+|---|---|---|---|
+| **Hitbox System** | `src/ReplicatedStorage/Combat/HitboxModule.lua` | Server & client spatial hit queries (Box, Sphere, Cylinder, Sector/Cone) with debug visualization | ⏳ Next |
+| **Status Effects** | `src/ReplicatedStorage/Combat/StatusEffects.lua` | 7 status effect types (Stun, Knockback, Burn, Bleed, Slow, DefenseBuff, Invulnerable) | ⏳ Next |
+| **Skill Base** | `src/ReplicatedStorage/Skills/SkillBase.lua` | Base class handling skill lifecycle, cooldown tracking, and hit detection | ⏳ Next |
+| **Combat Manager** | `src/ServerScriptService/Managers/CombatManager.lua` | Authoritative damage formula, mitigation, hit validation, and player death handling | ⏳ Next |
+| **Combat Controller** | `src/StarterPlayer/StarterCharacterScripts/CombatController.local.lua` | Client input detection, client-side cooldown prediction, and remote activation | ⏳ Next |
+| **Animation Controller** | `src/StarterPlayer/StarterCharacterScripts/AnimationController.local.lua` | Client animation playback triggered from combat events | ⏳ Next |
+| **Ninja Starter Skills** | `src/ReplicatedStorage/Skills/Ninja/` | Initial 3 prototype skills (Shadow Step, Shuriken Barrage, Substitution Jutsu) | ⏳ Next |
+| **Combat Arena Test** | `tests/CombatTests.lua` | Validation that players can attack, apply status effects, deal calculated damage, and register deaths | ⏳ Next |
 
 ---
 
