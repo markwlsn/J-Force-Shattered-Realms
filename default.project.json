@@ -1,7 +1,6 @@
 {
     "name": "J Force: Shattered Realms",
     "servePort": 34872,
-    "servePlaceIds": [],
     "globIgnorePaths": [
         "**/package.json",
         "**/tsconfig.json"
