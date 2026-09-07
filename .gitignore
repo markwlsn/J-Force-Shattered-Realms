@@ -1,0 +1,33 @@
+# Roblox Studio generated files
+*.rbxl
+*.rbxlx
+*.rbxm
+*.rbxmx
+
+# Rojo build output
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Roblox plugin data
+*.rbxl.lock
+
+# Node modules (if using tooling)
+node_modules/
+
+# Wally packages (if using Wally package manager)
+Packages/
+DevPackages/
+wally.lock
+
+# Misc
+*.log
