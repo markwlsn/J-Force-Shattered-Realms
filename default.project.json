@@ -1,0 +1,35 @@
+{
+    "name": "J Force: Shattered Realms",
+    "servePort": 34872,
+    "servePlaceIds": [],
+    "globIgnorePaths": [
+        "**/package.json",
+        "**/tsconfig.json"
+    ],
+    "tree": {
+        "$className": "DataModel",
+        "ServerScriptService": {
+            "$className": "ServerScriptService",
+            "$path": "src/ServerScriptService"
+        },
+        "ReplicatedStorage": {
+            "$className": "ReplicatedStorage",
+            "$path": "src/ReplicatedStorage"
+        },
+        "StarterGui": {
+            "$className": "StarterGui",
+            "$path": "src/StarterGui"
+        },
+        "StarterPlayer": {
+            "$className": "StarterPlayer",
+            "StarterCharacterScripts": {
+                "$className": "StarterCharacterScripts",
+                "$path": "src/StarterPlayer/StarterCharacterScripts"
+            }
+        },
+        "Workspace": {
+            "$className": "Workspace",
+            "$path": "src/Workspace"
+        }
+    }
+}
